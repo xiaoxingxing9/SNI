@@ -91,20 +91,6 @@ function parsePryAddress(serverStr) {
     }
     return { type: 'direct', host: serverStr, port: 443 };
 }
-
-function isSpeedTestSite(hostname) {
-    const speedTestDomains = ['speedtest.net','fast.com','speedtest.cn','speed.cloudflare.com', 'ovo.speedtestcustom.com'];
-    if (speedTestDomains.includes(hostname)) {
-        return true;
-    }
-    for (const domain of speedTestDomains) {
-        if (hostname.endsWith('.' + domain) || hostname === domain) {
-            return true;
-        }
-    }
-    return false;
-}
-
 async function handleSSRequest(request, customProxyIP) {
     const wssPair = new WebSocketPair();
     const [clientSock, serverSock] = Object.values(wssPair);
